@@ -1,0 +1,15 @@
+[Unit]
+Description=Minecraft
+After=network.target
+
+[Service]
+User=minecraft
+WorkingDirectory=/opt/minecraft/server
+Nice=1
+SuccessExitStatus=0 1
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=true
+PrivateDevices=true
+ExecStart=/usr/bin/java -Xmx8192M -Xms4096M -jar server.jar nogui
+ExecStop=/opt/minecraft/utility/mcrcon/mcrcon -H 127.0.0.1 -P 25575 -p PASSWORD stop
