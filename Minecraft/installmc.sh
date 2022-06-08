@@ -38,8 +38,8 @@ useradd --system --user-group --create-home --home /opt/minecraft --shell /bin/b
 sudo -u minecraft bash <<EOF
   mkdir /opt/minecraft/{backups,server,utility}
   cd /opt/minecraft/server
-  curl -o installer.jar https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.10.2/fabric-installer-0.10.2.jar
-  java -jar installer.jar server -mcversion 1.18.2 -downloadMinecraft
+  curl -o installer.jar https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.11.0/fabric-installer-0.11.0.jar
+  java -jar installer.jar server -mcversion 1.19 -downloadMinecraft
   rm installer.jar
   mv server.jar vanilla.jar
   mv fabric-server-launch.jar server.jar
