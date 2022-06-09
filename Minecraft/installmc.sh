@@ -77,3 +77,25 @@ mv minecraft.service /etc/systemd/system/minecraft.service
 systemctl daemon-reload
 systemctl start minecraft
 systemctl stop minecraft
+
+# Download Fabric mods
+# Note to self: update versions when new releases become available.
+sudo -u minecraft bash <<EOF
+  cd /opt/minecraft/server/mods
+  wget https://github.com/CaffeineMC/lithium-fabric/releases/download/mc1.18.2-0.7.10/lithium-fabric-mc1.18.2-0.7.10.jar
+  wget https://github.com/CaffeineMC/phosphor-fabric/releases/download/mc1.18.x-0.8.1/phosphor-fabric-mc1.18.x-0.8.1.jar
+EOF
+
+# Download VanillaTweaks
+# Includes: Armor Statues, AFK Display, Multiplayer Sleep, Coordinates HUD, Track Statistics, Track Raw Statistics,
+# Durability Ping, Player Head Drops, Anti Enderman Grief, More Mob Heads, Silence Mobs, Double Shulker Shells,
+# Wandering Trades (Hermit Edition), Spectator Conduit Power & Night Vision.
+sudo -u minecraft bash <<EOF
+  cd /opt/minecraft/server/world/datapacks
+  wget https://vanillatweaks.net/download/VanillaTweaks_d539008_UNZIP_ME.zip
+  unzip VanillaTweaks_d539008_UNZIP_ME.zip
+  rm VanillaTweaks_d539008_UNZIP_ME.zip
+EOF
+
+# Start it all up
+systemctl start minecraft
